@@ -38,10 +38,18 @@ namespace decryptVmAccess
         private static void ProcessDirectory(string targetDirectory)
         {
             // Process the list of files found in the directory.
-            string [] fileEntries = Directory.GetFiles(targetDirectory);
-            foreach(string fileName in fileEntries) {
-                ProcessFile(fileName);
-            }
+            if (Directory.Exists(targetDirectory)) {
+                string[] fileEntries = Directory.GetFiles(targetDirectory);
+                foreach (string fileName in fileEntries)
+                {
+                    try { 
+                        ProcessFile(fileName); 
+                    } catch {
+                        Console.WriteLine("Failed to decode {0}", fileName);
+                    }  
+                    
+                }
+            } 
 
         }
 
@@ -63,9 +71,9 @@ namespace decryptVmAccess
                 //Console.WriteLine(data);
                 username = (string)handlerSettings["publicSettings"]["UserName"];
             }
-            Console.WriteLine("User is {0}", username);
+            Console.WriteLine("Username: {0}", username);
             ProtectedSettings protectedSettings = GetExtensionProtectedSettings(thumbprint, data);
-            Console.WriteLine("Password is {0}",protectedSettings.Password);
+            Console.WriteLine("Password: {0}",protectedSettings.Password);
         }
 
         private static ProtectedSettings GetExtensionProtectedSettings(string thumbprint, string b64Data)

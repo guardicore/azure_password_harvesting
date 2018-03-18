@@ -31,7 +31,7 @@ namespace decryptVmAccess
             Console.WriteLine("****************************************************");
             Console.WriteLine("GuardiCore Azure Password recovery diagnostic tool");
             Console.WriteLine("Written By Guardicore Labs");
-            Console.WriteLine("Contact us at: support@guardicore.com");
+            Console.WriteLine("Contact us at: labs@guardicore.com");
             Console.WriteLine("****************************************************");
         }
 
@@ -40,6 +40,10 @@ namespace decryptVmAccess
             // Process the list of files found in the directory.
             if (Directory.Exists(targetDirectory)) {
                 string[] fileEntries = Directory.GetFiles(targetDirectory);
+                if (0 == fileEntries.Length)
+                {
+                    Console.WriteLine("No reset password configuration files were found.");
+                }
                 foreach (string fileName in fileEntries)
                 {
                     try { 
@@ -50,7 +54,6 @@ namespace decryptVmAccess
                     
                 }
             } 
-
         }
 
         private static void ProcessFile(string fileName)

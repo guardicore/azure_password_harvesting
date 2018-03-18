@@ -53,6 +53,10 @@ namespace decryptVmAccess
                     }  
                     
                 }
+            }
+            else
+            {
+                Console.WriteLine("No reset password configuration files were found.");
             } 
         }
 

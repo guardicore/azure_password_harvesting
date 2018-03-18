@@ -42,7 +42,7 @@ namespace decryptVmAccess
                 string[] fileEntries = Directory.GetFiles(targetDirectory);
                 if (0 == fileEntries.Length)
                 {
-                    Console.WriteLine("No reset password configuration files were found.");
+                    Console.WriteLine("No reset password configuration files were found.\nNo plaintext passwords were found!");
                 }
                 foreach (string fileName in fileEntries)
                 {
@@ -56,7 +56,7 @@ namespace decryptVmAccess
             }
             else
             {
-                Console.WriteLine("No reset password configuration files were found.");
+                Console.WriteLine("No reset password configuration files were found.\nNo plaintext passwords were found!");
             } 
         }
 
